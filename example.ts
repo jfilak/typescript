@@ -38,9 +38,12 @@ function hashCodeOf(input: string): number {
     return hash;
 }
 
+
+
 function nextMinstdRandFor(seed: number): number {
+  const modulus = 2147483647;
   const product = 48271 * seed;
-  return product % 2147483647;
+  return (product % modulus) / modulus;
 }
 
 console.log("Hash codes");
@@ -50,3 +53,11 @@ for (let atIndex = 0; atIndex < typesCount; ++atIndex) {
     const typeHashCode = hashCodeOf(typeName);
     console.log(typeName + ": " + typeHashCode + " - " + nextMinstdRandFor(typeHashCode));
 }
+
+function randomStringOfLength(seed: number, requiredLength: number): string {
+  const allowedLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  for (let currentLength = 0; currentLength < requiredLength; ++currentLength) {
+        
+  }
+}
+
