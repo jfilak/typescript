@@ -9,7 +9,6 @@ CLASS bar DEFINITION
 FOR TESTING.
 
 ENDCLASS.
-
 interface blah definition.
 endinterface.
 
@@ -28,7 +27,7 @@ while ((result = classRx.exec(src)) !== null) {
     types.push(cls);
 }
 
-function hashCodeOf(input: String): Number {
+function hashCodeOf(input: string): number {
     let hash = 0;
     if (input.length == 0) return hash;
     for (let i = 0; i < input.length; ++i) {
@@ -39,8 +38,15 @@ function hashCodeOf(input: String): Number {
     return hash;
 }
 
+function nextMinstdRandFor(seed: number): number {
+  const product = 48271 * seed;
+  return product % 2147483647;
+}
+
 console.log("Hash codes");
 let typesCount = types.length;
 for (let atIndex = 0; atIndex < typesCount; ++atIndex) {
-    console.log(hashCodeOf(types[atIndex]));
+    const typeName = types[atIndex];
+    const typeHashCode = hashCodeOf(typeName);
+    console.log(typeName + ": " + typeHashCode + " - " + nextMinstdRandFor(typeHashCode));
 }
